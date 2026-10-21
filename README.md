@@ -2,6 +2,8 @@
 
 **A quiet village. A private contract. A well-side trial.**
 
+[Play Mossmere](https://stefeigan-stack.github.io/Cozy-Strange/) · [Two-computer connection test](https://stefeigan-stack.github.io/Cozy-Strange/network-test.html)
+
 An original Three.js + Vite browser game in the `Cozy-Strange` repository. Intended for small groups of trusted friends. The static frontend is ready for GitHub Pages. There are no paid assets, generations, APIs, subscriptions, game servers or required purchases.
 
 This is a prototype, **not cheat-resistant public multiplayer**. The player's browser hosting the room runs the simulation and can inspect or alter every secret. WebRTC connections do not work on every network without TURN. See [NETWORKING.md](docs/NETWORKING.md).

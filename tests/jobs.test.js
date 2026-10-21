@@ -17,3 +17,13 @@ test('M3: co-op requires both nearby and cancels on disconnect',()=>{
   advance(s,.3);action(s,'host',{type:'interact'});advance(s,4);assert.equal(s.players.host.coins,0);
   s.phase='roam';removePlayer(s,'p1');assert.equal(s.players.host.pairId,null);assert.equal(s.pairs.length,0);
 });
+test('M2: lobby departures clear paired jobs and readiness before both members disappear',()=>{
+  const s=game(4);
+  for(const id of ['p1','p2']){at(s,id,STATIONS.coop);action(s,id,{type:'interact'});}
+  advance(s,.3);for(const id of ['p1','p2'])action(s,id,{type:'interact'});
+  assert.ok(s.players.p2.readyUntil>s.time);
+  removePlayer(s,'p1');assert.equal(s.players.p2.pairId,null);assert.equal(s.players.p2.readyUntil,0);
+  removePlayer(s,'p2');assert.doesNotThrow(()=>advance(s,1));assert.equal(s.pairs.length,0);
+  at(s,'p3',STATIONS.coop);action(s,'p3',{type:'interact'});removePlayer(s,'p3');
+  assert.deepEqual(s.pairQueue,[]);assert.equal(s.players.host.coins,0);
+});

@@ -41,7 +41,7 @@ function event(s,text,kind='notice',extra={}) {
 }
 export function removePlayer(s,id) {
   const p=s.players[id];if(!p)return;
-  if(s.phase==='lobby'){delete s.players[id];return;}
+  if(s.phase==='lobby'){cancelPair(s,p);delete s.players[id];return;}
   if(!p.connected)return;
   p.connected=false;p.alive=false;p.input={x:0,z:0};
   cancelPair(s,p);cancelContractFor(s,id);
@@ -57,7 +57,7 @@ function cancelContractFor(s,id) {
 function cancelPair(s,p) {
   s.pairQueue=s.pairQueue.filter(id=>id!==p.id);
   const pair=s.pairs.find(q=>q.id===p.pairId);
-  if(pair){pair.members.forEach(id=>{if(s.players[id])s.players[id].pairId=null;});s.pairs=s.pairs.filter(q=>q!==pair);}
+  if(pair){pair.members.forEach(id=>{if(s.players[id]){s.players[id].pairId=null;s.players[id].readyUntil=0;}});s.pairs=s.pairs.filter(q=>q!==pair);}
   p.pairId=null;p.readyUntil=0;
 }
 export function input(s,id,data) {

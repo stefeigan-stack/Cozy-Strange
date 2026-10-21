@@ -11,7 +11,9 @@ Last local verification: **22 October 2026**. Node 24.19.0 on the development ho
 | 3. Complete match | Contracts, reporting, evidence, defence, ballot, elimination, endings | Full simulated match, ties, expiry, disconnects and victory tests pass | Complete human multiplayer match and visual elimination |
 | 4. Polish/content | Original GLB village, multiple jobs, UI, shadows, instancing/batching, chimes | GLB format/structure, shared collision map, batch bounds and production paths pass | Screenshots, performance, narrow-screen layout and cross-browser checks |
 
-**25 automated tests passed; `npm run build` passed.** The available browser reported its WebGL renderer disabled. This prevents honest graphical QA here; it is not evidence that the game fails on a normal WebGL2 browser. A first two-tab data-channel attempt timed out. A local-HTTP identity compatibility issue was corrected, but no successful two-computer test is claimed. Bots, mocked inboxes, successful signalling and two tabs are never recorded as two real computers.
+**26 automated tests passed locally; `npm run build` passed locally and in GitHub Actions.** The available browser reported its WebGL renderer disabled. This prevents honest graphical QA here; it is not evidence that the game fails on a normal WebGL2 browser. The production connection-test page successfully opened a room through PeerJS signalling, but the guest data channel timed out, including after a local-HTTP identity compatibility fix. No successful two-computer test is claimed. Bots, mocked inboxes, successful signalling and two tabs are never recorded as two real computers.
+
+The initial production commit `fa884537fb1660f709bab1aa70b9c7cda06fa4e0` passed the [GitHub Actions build and Pages deployment](https://github.com/stefeigan-stack/Cozy-Strange/actions/runs/39616936617) after enabling Pages with GitHub Actions as its source. The [published page](https://stefeigan-stack.github.io/Cozy-Strange/) was opened successfully. The added 26th test covers lobby pair cleanup when both partners leave.
 
 ## Automated commands
 
